@@ -1,0 +1,1 @@
+awa = document.getElementById('pinto')
