@@ -1,0 +1,33 @@
+* {
+    border: 0;
+    margin: 0;
+}
+
+.link:hover {
+    text-decoration: underline;
+}
+.link {
+    right: 30px;
+}
+#logo {
+    position: absolute;
+    width: 17%;
+    left: 41.5%;
+    top: 25%;
+}
+#search {
+    position: absolute;
+    width: 403px;
+    height: 27px;
+    margin-right: auto;
+    margin-left: auto;
+}
+#searchbox {
+    position: absolute;
+    left: 32.8%;
+    top: 41.7%;
+}
+div, img {
+    width: 17px;
+
+}
