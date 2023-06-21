@@ -7,7 +7,7 @@ function clicknum(num) {
 }
 function op(operador) {
     if (primeironum) {
-        
+        //op = 1
     }
     switch(operador) {
         case 1 :
