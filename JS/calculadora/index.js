@@ -1,7 +1,6 @@
 nums = []
 ops = []
 res = 0
-display = document.getElementById('display')
 
 function clicknum(num) {
     nums.push(num)
@@ -32,4 +31,7 @@ function calcular() {
     console.log(res)
     console.log(nums.length)
     console.log(String(res))
-    display.innerText = 'hiuhg'
+    document.getElementById('display').innerHTML = String(res)
+    nums = [] ; ops = [] ; res = 0
+}
+
