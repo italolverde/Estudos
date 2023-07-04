@@ -19,5 +19,14 @@
     text-align: center;
 }
 #numscontainer {
-
+    position: relative;
+    left: 10%;
+    width: 80%;
+}
+button {
+    width: 21.25%;
+    margin-left: 5%;
+}
+.pri {
+    margin-left: 0;
 }
