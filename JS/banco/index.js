@@ -1,5 +1,7 @@
 valor = 0
 
+tabelaclientes = document.getElementById('clientes')
+
 class Cliente {
     constructor(nome, saldoinicial, id) {
         this.nome = nome
@@ -17,6 +19,7 @@ class Cliente {
         console.log(`Foram depositados R$${valor} da conta de ${clientes[cliente].nome}, novo saldo: R$${this.saldo}`)    
     }
 }
+clienteslista = [0]
 clientes = [0]
 console.log(clientes)
 function sacar() {
@@ -35,4 +38,10 @@ function cadastrar() {
     document.getElementById('nomecadastro').value = null
     clientes.push(new Cliente(nome, 100, clientes.length))
     console.log(clientes)
+    linha = document.createElement("tr")
+    linha.appendChild("td")
+    linha.appendChild("td")
+    linha.appendChild("td")
+    clienteslista.push(linha)
+    clienteslista[1].innerHTML = 'aaaaaaaaa'
 }
