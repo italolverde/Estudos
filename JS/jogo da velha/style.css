@@ -1,0 +1,84 @@
+        
+        #tabuleiro {
+            position: absolute;
+            left: 50%;
+            transform: translate(-50%);
+        }
+        
+        .but {
+            background-color: white;
+            /* background: rgb(255, 221, 234); */
+            width: 100px;
+            height: 100px;
+            position: absolute;
+            color: white;
+            font: bold 50pt Arial;
+            text-align: center;
+            line-height: 100px;
+        
+        }
+
+        .bigs {
+            position: absolute;
+            left: 50%;
+            transform: translate(-50%);
+            width: 310px;
+            height: 310px;
+            /* margin-left: 513px;
+            margin-top: 123px; */
+            background-color: gray;
+            /* background-color: rgb(216, 189, 199); */
+            padding: -1px;
+        }
+        /* #a1 {
+            margin-top: 120px;
+            margin-left: 510px;
+        }*/ #a2 { 
+            top: 0;
+            left: 105px;
+        } #a3 {
+            top: 0px;
+            left: 210px;
+        } #b1 {
+            top: 105px;
+            left: 0px;
+        } #b2 {
+            top: 105px;
+            left: 105px;
+        } #b3 {
+            top: 105px;
+            left: 210px;
+        } #c1 {
+            top: 210px;
+            left: 0px;
+        } #c2 {
+            top: 210px;
+            left: 105px;
+        } #c3 {
+            top: 210px;
+            left: 210px;
+        }
+        #resetbutton {
+            position: absolute;
+            left: 50%;
+            transform: translate(-50%);
+            top: 490px;
+            font: bold 10pt Arial;
+            background-color: rgb(92, 92, 255);
+            color: white;
+        }
+        h1 {
+            text-align: center;
+            background-color: rgb(216, 189, 199);
+        }
+        h2 {
+            position: absolute;
+            top: 400px;
+            width: 98%;
+            text-align: center;
+            color: white;
+        }
+        #changeplayers {
+            position: absolute;
+            right: 50px;
+        }

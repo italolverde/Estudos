@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo da Velha</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Jogo da Velha</h1>
+    <div id="tabuleiro"></div>
+    <div class="bigs" id="bg">
+    <div class="but" id="a1" onclick="clicar(0),check()"></div>
+    <div class="but" id="a2" onclick="clicar(1),check()"></div>
+    <div class="but" id="a3" onclick="clicar(2),check()"></div>
+    <div class="but" id="b1" onclick="clicar(3),check()"></div>
+    <div class="but" id="b2" onclick="clicar(4),check()"></div>
+    <div class="but" id="b3" onclick="clicar(5),check()"></div>
+    <div class="but" id="c1" onclick="clicar(6),check()"></div>
+    <div class="but" id="c2" onclick="clicar(7),check()"></div>
+    <div class="but" id="c3" onclick="clicar(8),check()"></div>
+</div>
+<h2 id="para"></h2>
+    <input type="button" id="resetbutton" value="Reiniciar" onclick="restart()">
+    <input type="button" id="changeplayers" value="Trocar Jogadores" onclick="changeplayers()">
+
+<script src="./scripts.js"></script>
+
+</body>
+</html>
