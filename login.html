@@ -7,14 +7,13 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Super sistema de login ultra avançado 2014 atualizado sem virus</h1>
+    <h1>Login</h1>
 
-    <a href="{{url_for('login')}}">
-        Login
-    </a>
-    <div></div>
-    <a href="{{url_for('register')}}">
-        Registro
-    </a>
+    <form action="{{url_for('login')}}" method="post">
+        <input type="text" name="nome" placeholder="Nome">
+        <input type="password" name="senha" placeholder="Senha">
+        <input type="submit">
+    </form>
+
 </body>
 </html>

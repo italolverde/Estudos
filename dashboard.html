@@ -7,14 +7,13 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Super sistema de login ultra avançado 2014 atualizado sem virus</h1>
-
-    <a href="{{url_for('login')}}">
-        Login
-    </a>
+    <h1>Dashboard</h1>
+    <h2>Olá, {{nome}} </h2>
     <div></div>
-    <a href="{{url_for('register')}}">
-        Registro
-    </a>
+    <form action="{{url_for('logout')}}" method="post">
+        <input type="submit" value="Logout">
+    </form>
+    
+
 </body>
 </html>
