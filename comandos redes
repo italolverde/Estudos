@@ -1,3 +1,32 @@
+
+##### REDHAT #####
+Todos os sistemas de computadores dos alunos têm uma conta de usuário padrão, student, que tem a senha student. A rootsenha em todos os sistemas dos alunos é redhat.
+
+bastion.lab.exemplo.com	                    | 172.25.250.254	| Sistema de gateway para conectar a rede privada do aluno ao servidor da sala de aula
+sala.exemplo.com	                          | 172.25.254.254	| Servidor que hospeda os materiais necessários para a sala de aula
+estação de trabalho.laboratório.exemplo.com	| 172.25.250.9	  | Estação de trabalho gráfica para uso do aluno
+servera.lab.example.com                    	| 172.25.250.10	  | Servidor gerenciado "A"
+serverb.lab.exemplo.com	                    | 172.25.250.11	  | Servidor gerenciado "B"
+
+CREATE	Create the ROLE classroom. Creates and starts all the virtual machines needed for this classroom. Creation can take several minutes to complete.
+CREATING	The ROLE classroom virtual machines are being created. Creates and starts all the virtual machines that are needed for this classroom. Creation can take several minutes to complete.
+DELETE	Delete the ROLE classroom. Destroys all virtual machines in the classroom. All saved work on those systems' disks is lost.
+START	Start all virtual machines in the classroom.
+STARTING	All virtual machines in the classroom are starting.
+STOP	Stop all virtual machines in the classroom.
+
+lab start para iniciar o exercicio
+lab finish para finalizar
+
+OPEN CONSOLE	Connect to the system console of the virtual machine in a new browser tab. You can log in directly to the virtual machine and run commands, when required. Normally, log in to the workstation virtual machine only, and from there, use ssh to connect to the other virtual machines.
+ACTION → Start	Start (power on) the virtual machine.
+ACTION → Shutdown	Gracefully shut down the virtual machine, preserving disk contents.
+ACTION → Power Off	Forcefully shut down the virtual machine, while still preserving disk contents. This is equivalent to removing the power from a physical machine.
+ACTION → Reset	Forcefully shut down the virtual machine and reset associated storage to its initial state. All saved work on that system's disks is lost.
+
+#################
+-----------------
+##### LINUX #####
 ls (ver conteúdo)
 
 caminho relativo -> inicia do diretório atual 
