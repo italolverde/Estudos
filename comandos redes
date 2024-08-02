@@ -1,0 +1,14 @@
+ls (ver conteúdo)
+
+caminho relativo -> inicia do diretório atual 
+caminho absoluto -> inicia na pasta raiz
+~ -->  /home/nomedeusuario
+
+cd .. (volta pro diretorio anterior)
+
+cd /home/hiandroitalo
+
+pwd -> retorna o comando absoluto de onde vc tá
+
+sudo antes do comando pra realizar uma ação privilegiada
+
