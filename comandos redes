@@ -41,3 +41,12 @@ pwd -> retorna o comando absoluto de onde vc tá
 
 sudo antes do comando pra realizar uma ação privilegiada
 
+No Linux, a maneira mais comum de obter um prompt do shell em um sistema remoto é usar o Secure Shell (SSH). A maioria dos sistemas Linux (incluindo o Red Hat Enterprise Linux) e macOS fornecem o programa de linha de comando OpenSSH ssh para esse fim.
+
+Nesse exemplo, um usuário com um prompt do shell na máquina host usa ssh para fazer login no sistema Linux remoto remotehost com o usuário remoteuser:
+
+[user@host ~]$ ssh remoteuser@remotehost
+remoteuser@remotehost's password: password
+[remoteuser@remotehost ~]$
+
+
