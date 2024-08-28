@@ -31,7 +31,7 @@ Cookies:
 - Pegar o valor do request: 
 varcookie = request.args.get('nome_request')
 
-- Definir um novo cookie: (Não entendo o que está escrito aqui, peguei ctrl+c do código de romerito)
+- Comandos pra manipular cookies, deletar e definir: (Não entendo o que está escrito aqui, peguei ctrl+c do código de romerito)
 template = render_template('cor.html', cor = request.cookies['color'])
 response = make_response(template)
 response.delete_cookie('color')
