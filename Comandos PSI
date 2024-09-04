@@ -47,5 +47,9 @@ generate_password_hash('string')
 Comparar hash e string:
 check_password_hash(hash, 'string')
 
+@property (ainda vou estudar e escrever mais sobre mas quando uma propriedade de uma classe é acessada, ela troca o valor de retorno) :
+@property
+def _password(self): // Quando tiverem tentando ver a propriedade _password
+    return self._hash // O que vai ser retornado, na verdade, vai ser o _hash (senha criptografada)
 
 
