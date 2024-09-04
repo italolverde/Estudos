@@ -1,6 +1,6 @@
 Comandos para PSI
 Sumário :
-Linha 5: SQLITE /// Linha 25: Formularios /// Linha 29: Cookies
+Linha 5: SQLITE /// Linha 25: Formularios /// Linha 29: Cookies /// Linha 42: Hash
 ---------------------------------------------------------------------------------
 SQLITE:
 - Função para pegar conexão com o BD:
@@ -36,3 +36,16 @@ template = render_template('cor.html', cor = request.cookies['color'])
 response = make_response(template)
 response.delete_cookie('color')
 response.set_cookie('color', value = cor)
+
+
+---------------------------------------------------------------------------------
+Hash: from werkzeug.security import generate_password_hash, check_password_hash
+
+Gerar hash de uma string:
+generate_password_hash('string')
+
+Comparar hash e string:
+check_password_hash(hash, 'string')
+
+
+
