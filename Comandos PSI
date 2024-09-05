@@ -52,4 +52,23 @@ check_password_hash(hash, 'string')
 def _password(self): // Quando tiverem tentando ver a propriedade _password
     return self._hash // O que vai ser retornado, na verdade, vai ser o _hash (senha criptografada)
 
+Login: (pip install Flask-Login) from flask_login import LoginManager, login_required, login_user, logout_user, UserMixin
+
+login_manager = LoginManager()
+app.config['SECRET_KEY'] = 'SUPERDIFICIL'
+login_manager.init_app(app)
+
+{
+@login_manager.user_loader
+def load_user(user_id):
+    return User.get(user_id)
+}
+
+class User(UserMixin):
+    id : int
+    def __init__(self):
+        pass
+
+    def get(self):
+        pass
 
