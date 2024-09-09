@@ -1,0 +1,81 @@
+from flask import Flask, session, request, \
+    render_template, url_for, redirect
+import sqlite3
+app = Flask(__name__)
+INSERT = 'INSERT into users(nome, senha) VALUES (?,?)'
+
+def get_connection():
+    conn = sqlite3.connect('database.db')
+    conn.row_factory = sqlite3.Row
+    return conn
+
+# chave para critografia de cookies na sessão
+app.config['SECRET_KEY'] = 'superdificil'
+
+@app.route('/')
+def index():
+    return render_template('index.html')
+
+@app.route('/dashboard')
+def dash():
+    if 'user' not in session:
+        return redirect(url_for('index'))
+    return render_template('dashboard.html', nome=session['user'])
+
+@app.route('/login', methods=['POST', 'GET'])
+def login():
+    # se já tá logado
+    if 'user' in session:
+        return redirect (url_for('dash')) #vai pra o dashboard
+
+    if request.method == 'GET':
+        return render_template('login.html')
+    else:
+        nome = request.form['nome']
+        senha = request.form['senha']
+        conn = get_connection()
+        try:
+            usuario = conn.execute('SELECT * FROM users WHERE nome=?',nome).fetchone
+        except:
+            return "Usuário não encontrado"
+        if usuario[senha] == senha:
+            session['user'] = nome
+            return redirect(url_for('dash'))
+        else:
+            return 'Senha incorreta'
+
+    
+
+@app.route('/register', methods=['GET', 'POST'])
+def register():
+
+    # se já tá logado
+    if 'user' in session:
+        return redirect (url_for('dash')) #vai pra o dashboard
+
+    if request.method == 'GET':
+        return render_template('register.html')
+    else:
+        
+        nome = request.form['nome']
+        senha = request.form['senha']
+        conn = get_connection()
+        usuarios = conn.execute('SELECT * FROM users').fetchall
+        if nome not in usuarios:
+            conn = get_connection()
+            conn.execute(INSERT,(nome,senha))
+            conn.commit()
+            conn.close()
+        else:
+            # flash messages
+            return redirect(url_for('login')) 
+
+        session['user'] = nome
+        return redirect(url_for('dash'))
+
+        
+@app.route('/logout', methods=['POST'])
+def logout():
+    if 'user' in session:
+        session.pop('user', None)
+        return redirect(url_for('index'))
