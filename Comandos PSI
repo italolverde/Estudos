@@ -72,3 +72,5 @@ class User(UserMixin):
     def get(self):
         pass
 
+@login_required entre a linha da definição da rota e da função da rota faz com que seja necessário login ativo para acessar a página.
+login_user(user) loga o usuario
