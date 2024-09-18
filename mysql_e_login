@@ -1,0 +1,116 @@
+from flask_mysqldb import MySQL
+
+app.config['MYSQL_USER'] = 'root'
+app.config['MYSQL_PASSWORD'] = ''
+app.config['MYSQL_DB'] = 'avaliacao1' #nome do banco de dados
+app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
+
+conexao = MySQL(app)
+
+- #Commit e close
+conexao.connection.commit()  //  conn.close()
+
+- #Pegar conexao
+conn = conexao.connection.cursor()
+
+- #Executar comandos
+conn.execute ("INSERT INTO users(nome) VALUES(%s)", (nome,)) #%s no lugar do "?" do sqlite
+
+- #Select
+conn.execute("SELECT * FROM tabela WHERE id = %s", (variavel,))
+
+- #Delete
+conn.execute("DELETE FROM pecas WHERE id = %s", (id,))
+
+------------------------------------------------------------------
+- #Iniciar o banco (arquivo init)
+
+from flask import Flask
+from flask_mysqldb import MySQL
+
+app = Flask(_name_)
+
+app.config['MYSQL_USER'] = 'root'
+app.config['MYSQL_PASSWORD'] = ''
+app.config['MYSQL_DB'] = 'mysql'  # Use o banco de dados padrão para executar o SQL
+app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
+
+conexao = MySQL(app)
+
+def execute_sql_file(filename):
+    with app.app_context():  #Criando o contexto da aplicação
+        cursor = conexao.connection.cursor()
+        with open(filename, 'r') as file:
+            sql = file.read() #Lê o arquivo e armazena como uma string
+            comandos_raw = sql.split(';') #Divide o conteúdo do arquivo em uma lista usando ';' como delimitador
+
+            commands = [] #Lista para armazenar comandos SQL limpos
+            for comando in comandos_raw:
+                comando_limpo = comando.strip() #Remover espaços em branco no início e no fim do comando
+                if comando_limpo:#Verificar se o comando não está vazio
+                    commands.append(comando_limpo)#Adicionar o comando limpo à lista 'commands'
+
+            for command in commands: #percorrendo os comandos limpos
+                cursor.execute(command) #executando cada comando
+        conexao.connection.commit()
+        cursor.close()
+
+if _name_ == "_main_":
+    execute_sql_file('db/schema.sql')  # Caminho ajustado para o arquivo SQL
+
+------------------------------------------------------------------
+Login: (pip install Flask-Login) from flask_login import LoginManager, login_required, login_user, logout_user, UserMixin
+
+- #Configs iniciais pro começo do codigo
+
+login_manager = LoginManager()
+app.config['SECRET_KEY'] = 'SUPERDIFICIL'
+login_manager.init_app(app)
+
+@login_manager.user_loader
+def load_user(user_id):
+    return User.get(user_id)
+
+#Decoradores
+
+@login_required entre a linha da definição da rota e da função da rota faz com que seja necessário login ativo para acessar a página.
+login_user(user)
+
+------------------------------------------------------------------
+#Criar User no arquivo models
+carregar banco de dados: linha 29 - 38
+caso for usar sqlite, só precisa pegar a função "get_connection"
+
+class User(UserMixin):
+    id : str
+    def __init__(self, email, senha):
+        self.email = email
+        self.senha = senha
+        
+    @classmethod
+    def get(cls, id):
+        conexao = obter_conexao()
+        SELECT = 'SELECT * FROM usuarios WHERE id=?'
+        dados = conexao.execute(SELECT, (id,)).fetchone()
+        user = User(dados['email'], dados['senha'])
+        user.id = dados['id']
+        return user
+
+    @classmethod
+    def get_by_email(cls, email):
+        conexao = obter_conexao()
+        SELECT = 'SELECT * FROM usuarios WHERE email=?'
+        dados = conexao.execute(SELECT, (email,)).fetchone()
+        if dados:    
+            user = User(dados['email'], dados['senha'])
+            user.id = dados['id']
+            return user
+        return None
+
+------------------------------------------------------------------
+
+
+
+
+
+    
