@@ -1,0 +1,5 @@
+app.register_blueprint(blueprint)
+
+bp = Blueprint("nome", __name__, url_prefix="/rota", template_folder="caminho")
+
+arquivo init com uma lista chamada all com todos os nomes de arquivos
