@@ -74,3 +74,84 @@ class User(UserMixin):
 
 @login_required entre a linha da definição da rota e da função da rota faz com que seja necessário login ativo para acessar a página.
 login_user(user) loga o usuario
+
+
+------------------------------------- SQL ALCHEMY ------------------------------------------
+Programação de banco de dados usando POO
+
+mysql: create_engine("mysql:/root:@localhost/sqlalchemy")
+mysqlclient : reate_engine("mysql+mysqldb:/root:@localhost/sqlalchemy")
+
+#Exemplo 1 só sqlalchemy sem sessão, sem modelo, só sql puro. ------------------------------
+
+from sqlalchemy import create_engine, text
+
+engine = create_engine('sqlite:///database.db')
+
+sql = text("""CREATE TABLE IF NOT EXISTS users(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    nome TEXT);""")  #faz com que o texto seja entendido como código sql, o código é a criação de uma tabela
+
+conn = engine.connect()
+
+conn.execute(sql)
+conn.commit()
+
+insert = text("INSERT INTO users(nome) VALUES(:nome)") # :coluna especifica que vai ser um valor recebido na hora do insert
+conn.execute(insert,{'nome':'Mike Shinoda',})
+conn.commit()
+
+
+
+#Exemplo 2 de sql+sessão sem modelo --------------------------------------------------------
+
+from sqlalchemy import create_engine, text 
+from sqlalchemy.orm import Session
+
+engine = create_engine("sqlite:///app2.db")
+
+session = Session(bind=engine)
+
+sql = text("""CREATE TABLE IF NOT EXISTS users(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    nome TEXT);""")
+
+session.execute(sql)
+session.commit()
+
+insert = text("INSERT INTO users(nome) VALUES(:nome)") # :coluna especifica que vai ser um valor recebido na hora do insert
+session.execute(insert,{'nome':'Sebosao',})
+session.commit()
+
+
+
+#Exemplo 3 de criar db, tabela e inserir usuario usando modelo e sessão --------------------
+
+from sqlalchemy import create_engine 
+from sqlalchemy.orm import Session
+
+from models import User, Base
+
+engine = create_engine("sqlite:///app2.db")
+
+Base.metadata.create_all(bind=engine) 
+
+session = Session(bind=engine)
+usuario = User(nome = 'jhonblack')
+session.add(usuario)
+session.commit()
+
+
+
+#Modelo do exemplo 3 -----------------------------------------------------------------------
+
+from sqlalchemy.orm import Mapped, mapped_column
+from sqlalchemy.orm import DeclarativeBase
+
+class Base(DeclarativeBase):
+    pass
+
+class User(Base):
+    __tablename__ = 'users'
+    id:Mapped[int] = mapped_column(primary_key=True)
+    nome:Mapped[str]
