@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Inserir mensagens</h2>
+    <form action="{{url_for('mensagens')}}", method="post">
+        <input type="text" name="mensagem">
+        <button type="submit">Enviar</button>
+    </form>
+
+    <h2>suas mensagens:</h2>
+    {% if mensagens %}
+        {% for mensagem in mensagens %}
+            <p>{{mensagem}}</p>
+        {% endfor %}
+    {% endif %}
+</body>
+</html>
