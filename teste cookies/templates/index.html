@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="{{url_for('inserir')}}" method = 'POST'>
+        <input type="text" name="nome_cookie" placeholder="Adcionar cookie">
+        <button type="submit">Inserir</button>
+    </form>
+
+    <form action="{{url_for('remover')}}" method = 'POST'>
+        <input type="text" name= 'nome_cookie' placeholder="Remover cookie">
+        <button type="submit">Remover</button>
+    </form>
+
+    {% if cookies %}
+        {% for cookie in cookies %}
+            <p>{{cookie}}</p>
+        {% endfor %}
+    {% endif %}
+
+</body>
+</html>
