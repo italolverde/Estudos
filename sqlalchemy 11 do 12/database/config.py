@@ -18,6 +18,8 @@ def start_db():
 #listar todos os usuarios
 #session.query(User).where(User.name.startswith('R')) RETORNA UMA LISTA
 
+
+
 def destroy_db():
     Base.metadata.drop_all(bind=engine)
 
