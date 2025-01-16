@@ -20,6 +20,7 @@
         <h3>Livros</h3>
         <form action="{{url_for('cadastro_livro')}}" method="post">
             <input type="text" name="titulo" placeholder="Titulo">
+            <input type="text" name="user" placeholder="Usuario">
             <button type="submit">Adcionar</button>
         </form>
         {% for livro in livros %}

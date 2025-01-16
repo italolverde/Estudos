@@ -14,7 +14,10 @@ with app.app_context():
 @app.route('/', methods=['POST','GET'])
 def index():
     usuarios = db.session.execute(db.select(User)).scalars()
-    livros = db.session.execute(db.select(Livros)).scalars()
+    try:
+        livros = db.session.execute(db.select(Livros)).scalars()
+    except:
+        livros = []
     return render_template('listar.html', users = usuarios, livros = livros)
 
 @app.route('/cadastro/user', methods=['POST'])
@@ -30,7 +33,10 @@ def cadastro_user():
 def cadastro_livro():
     if request.method == 'POST':
         titulo = request.form['titulo']
-        livro = Livros(titulo=titulo)
+        user = request.form['user']
+        user_id = db.session.query(User.id).filter_by(nome = user).first()
+        user_id = str(user_id)
+        livro = Livros(titulo=titulo, user_id=user_id)
         db.session.add(livro)
         db.session.commit()
     return redirect(url_for('index'))
