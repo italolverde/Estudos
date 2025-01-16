@@ -6,10 +6,25 @@
     <title>Document</title>
 </head>
 <body>
-    
-    {% for user in resultado %}
+    <div>
+        <h3>Usuarios</h3>
+        <form action="{{url_for('cadastro_user')}}" method="post">
+            <input type="text" name="nome" placeholder="Nome">
+            <button type="submit">Adcionar</button>
+        </form>
+        {% for user in users %}
         <p>{{user.nome}}</p>
-    {% endfor %}
-
+        {% endfor %}
+    </div>
+    <div>
+        <h3>Livros</h3>
+        <form action="{{url_for('cadastro_livro')}}" method="post">
+            <input type="text" name="titulo" placeholder="Titulo">
+            <button type="submit">Adcionar</button>
+        </form>
+        {% for livro in livros %}
+        <p>{{livro.titulo}}</p>
+        {% endfor %}
+    </div>
 </body>
 </html>
