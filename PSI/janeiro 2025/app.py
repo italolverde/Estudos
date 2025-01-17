@@ -4,7 +4,7 @@ from models import User,Livros
 
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///livraria.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///livraria.db' #NOME DO ARQUIVO .DB
 
 db.init_app(app)
 
@@ -13,9 +13,9 @@ with app.app_context():
 
 @app.route('/', methods=['POST','GET'])
 def index():
-    usuarios = db.session.execute(db.select(User)).scalars()
-    try:
-        livros = db.session.execute(db.select(Livros)).scalars()
+    usuarios = db.session.execute(db.select(User)).scalars() #SELECT * FROM USER
+    try: #motivo desse try except: ele da erro caso tente retornar os livro com valor nulo, por isso crio uma lista vazia para retornar
+        livros = db.session.execute(db.select(Livros)).scalars() #SELECT * FROM LIVROS
     except:
         livros = []
     return render_template('listar.html', users = usuarios, livros = livros)
