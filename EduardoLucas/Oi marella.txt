@@ -1,0 +1,52 @@
+Vou jogar aqui um resumão completo, além dos comentarios espalhados pelos arquivos
+não vou explicar as coisas básicas tipo: o que é a pasta static
+
+Lembrando, deletei a pasta env pra conseguir colocar no github, mas eu criei o arquivo requirements.txt
+só criar a env ativar e dar o pip install -r requirements.txt
+
+auth/routes.py, linha 67:
+Só um exemplo de um select usando where
+
+    usuario = session.query(User).where(User.nome == nome, User.senha == senha).first()
+    aqui diz: "Select * From users Where user_nome = nome_formulario, user_senha = senha_formulario Limit 1"
+
+
+auth/routes.py, linha 87
+Ali eu tento explicar como que faria um update que eduardo não conseguiu fazer
+Basicamete você consegue atualizar os valores de uma coluna apenas pegando a tabela, mudando o valor dela e dando commit
+bem raíz de POO mesmo
+
+Exemplo: 
+
+user = User(nome = nome_inicial, email = email_inicial)
+session.commit()
+User criado com os valores "nome" e "email"
+para editar, !!APARENTEMENTE!! (não testei) você pode fazer:
+
+user = session.query(User).where(User.nome = "nome_inicial")
+// SELECT * FROM users WHERE nome = "nome_inicial"
+
+user.nome = "novo_nome"
+user.email = "novo_email"
+session.commit()
+
+core/core.py, linha 16
+Apenas mais um exemplo de select que nunca é demais:
+
+    //"SELECT * FROM users"
+    users = session.query(User).all()
+
+
+core/models.py:
+Aqui no models.py tem o autorelacionamento, basicamente uma chave estrangeira que referencia a própria tabela
+Como eu deixei no comentário, acho que ele fez incompleto por que os exemplos que eu vi disso usavam DUAS COLUNAS
+
+Ficaria algo como:
+
+gerente: Mapped["User"] = relationship("User", remote_side="User.id", back_populates="subordinates")
+usuarios: Mapped[list["User"]] = relationship("User", back_populates="manager")
+
+Aqui taria criando a coluna gerente, e criando uma lista de usuarios que estariam subordinados a essa coluna gerente.
+
+De tudo, acho que é isso
+Bons estudos!
